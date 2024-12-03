@@ -4,6 +4,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
 @Composable
-actual fun getScreenWidthPx(): Float = with(LocalConfiguration.current) {
-    LocalDensity.current.run { screenWidthDp.dp.toPx() }
-}
+actual fun getScreenWidthPx(): Float =
+    with(LocalConfiguration.current) {
+        LocalDensity.current.run { screenWidthDp.dp.toPx() }
+    }
