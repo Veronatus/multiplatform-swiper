@@ -1,0 +1,10 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/lib/[root]/index.html
+$dokka.location://getScreenWidthPx/#/PointingToDeclaration/lib/[root]/get-screen-width-px.html
+$dokka.location://rememberSwiperState/#androidx.compose.animation.core.AnimationSpec[kotlin.Float]/PointingToDeclaration/lib/[root]/remember-swiper-state.html
+$dokka.location:/SwiperState///PointingToDeclaration/lib/[root]/-swiper-state/index.html
+$dokka.location:/SwiperState/SwiperState/#kotlin.Float#androidx.compose.animation.core.AnimationSpec[kotlin.Float]/PointingToDeclaration/lib/[root]/-swiper-state/-swiper-state.html
+$dokka.location:/SwiperState/currentIndex/#/PointingToDeclaration/lib/[root]/-swiper-state/current-index.html
+module:lib
+io.github.veronatus.multiplatformswiper
