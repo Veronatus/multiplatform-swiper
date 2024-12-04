@@ -237,10 +237,10 @@ class SwiperState(
     }
 }
 
-/* Swipe Direction */
-internal enum class Direction {
-    Left, Right, Center
-}
+///* Swipe Direction */
+//internal enum class Direction {
+//    Left, Right, Center
+//}
 
 @ExperimentalMaterialApi
 internal fun Modifier.swipe(

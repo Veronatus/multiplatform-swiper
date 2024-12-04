@@ -30,9 +30,7 @@ import kotlin.math.sign
 expect fun getScreenWidthPx(): Float
 
 @Composable
-fun rememberSwiperState(
-    animationSpec: AnimationSpec<Float> = SwipeableDefaults.AnimationSpec
-): SwiperState {
+fun rememberSwiperState(animationSpec: AnimationSpec<Float> = SwipeableDefaults.AnimationSpec): SwiperState {
     val screenWidth = getScreenWidthPx()
     return remember {
         SwiperState(screenWidth, animationSpec)
@@ -42,9 +40,8 @@ fun rememberSwiperState(
 @Stable
 class SwiperState(
     private val screenWidth: Float,
-    private val animationSpec: AnimationSpec<Float> = SwipeableDefaults.AnimationSpec
+    private val animationSpec: AnimationSpec<Float> = SwipeableDefaults.AnimationSpec,
 ) {
-
     /**
      * current index
      */
@@ -73,11 +70,14 @@ class SwiperState(
 
     internal var onAnimationEnd: () -> Unit = {}
 
-    private suspend fun snapInternalTo(previous: Float, target: Float): Float {
-        return Animatable(previous).apply {
-            snapTo(target)
-        }.value
-    }
+    private suspend fun snapInternalTo(
+        previous: Float,
+        target: Float,
+    ): Float =
+        Animatable(previous)
+            .apply {
+                snapTo(target)
+            }.value
 
     private suspend fun animateInternalTo(
         previous: Float,
@@ -99,37 +99,45 @@ class SwiperState(
     internal suspend fun drag(dragAmount: Offset) {
         coroutineScope {
             launch {
-                val x = snapInternalTo(
-                    offset.x,
-                    offset.x + dragAmount.x
-                )
-                val y = snapInternalTo(
-                    offset.y,
-                    offset.y + dragAmount.y
-                )
+                val x =
+                    snapInternalTo(
+                        offset.x,
+                        offset.x + dragAmount.x,
+                    )
+
+                val y =
+                    snapInternalTo(
+                        offset.y,
+                        offset.y + dragAmount.y,
+                    )
+
                 offset = Offset(x, y)
             }
             launch {
-                val targetRotation = normalize(
-                    center.x,
-                    right.x,
-                    abs(offset.x),
-                    0f,
-                    10f                             //Wie sehr es sich am Rand dreht   (10f standart)     720f witzig
-                )
+                val targetRotation =
+                    normalize(
+                        center.x,
+                        right.x,
+                        abs(offset.x),
+                        0f,
+                        10f,
+                    )
+
                 rotate =
                     snapInternalTo(rotate, targetRotation * -offset.x.sign)
             }
+
             launch {
-                scale = snapInternalTo(
-                    scale,
-                    normalize(
-                        center.x,
-                        right.x / 3,
-                        abs(offset.x),
-                        0.8f
+                scale =
+                    snapInternalTo(
+                        scale,
+                        normalize(
+                            center.x,
+                            right.x / 3,
+                            abs(offset.x),
+                            0.8f,
+                        ),
                     )
-                )
             }
         }
     }
@@ -237,90 +245,94 @@ class SwiperState(
     }
 }
 
-/* Swipe Direction */
-internal enum class Direction {
-    Left, Right, Center
+// Swipe Direction
+enum class Direction {
+    Left,
+    Right,
+    Center,
 }
 
 @ExperimentalMaterialApi
 internal fun Modifier.swipe(
     state: SwiperState,
     thresholdConfig: (Float, Float) -> ThresholdConfig = { _, _ -> FractionalThreshold(0.3f) },
-    velocityThreshold: Dp = VelocityThreshold
-): Modifier = composed {
-    val density = LocalDensity.current
-    LaunchedEffect(state) {
-        val thresholds = { from: Float, to: Float ->
-            with(thresholdConfig(from, to)) {
-                density.computeThreshold(from, to)
+    velocityThreshold: Dp = VelocityThreshold,
+): Modifier =
+    composed {
+        val density = LocalDensity.current
+        LaunchedEffect(state) {
+            val thresholds = { from: Float, to: Float ->
+                with(thresholdConfig(from, to)) {
+                    density.computeThreshold(from, to)
+                }
+            }
+            state.threshold = thresholds(state.center.x, state.right.x)
+            with(density) {
+                state.velocityThreshold = velocityThreshold.toPx()
             }
         }
-        state.threshold = thresholds(state.center.x, state.right.x)
-        with(density) {
-            state.velocityThreshold = velocityThreshold.toPx()
-        }
-    }
 
-    drag(
-        onEnd = { velocity ->
-            if (state.offset.x <= 0f) {
-                if (velocity.x <= -state.velocityThreshold) {
-                    state.runAnimation(Direction.Left)
-                } else {
-                    if (state.offset.x > -state.threshold*0.1) {
-                        state.runAnimation(Direction.Center)
-                    } else {
+        drag(
+            onEnd = { velocity ->
+                if (state.offset.x <= 0f) {
+                    if (velocity.x <= -state.velocityThreshold) {
                         state.runAnimation(Direction.Left)
-                    }
-                }
-            } else {
-                if (velocity.x >= state.velocityThreshold) {
-                    state.runAnimation(Direction.Right)
-                } else {
-                    if (state.offset.x < state.threshold*0.1) {
-                        state.runAnimation(Direction.Center)
                     } else {
+                        if (state.offset.x > -state.threshold * 0.1) {
+                            state.runAnimation(Direction.Center)
+                        } else {
+                            state.runAnimation(Direction.Left)
+                        }
+                    }
+                } else {
+                    if (velocity.x >= state.velocityThreshold) {
                         state.runAnimation(Direction.Right)
+                    } else {
+                        if (state.offset.x < state.threshold * 0.1) {
+                            state.runAnimation(Direction.Center)
+                        } else {
+                            state.runAnimation(Direction.Right)
+                        }
                     }
                 }
-            }
-        },
-        onDrag = { _, dragAmount ->
-            if (state.isAnimationRunning.not()) {
-                state.drag(dragAmount)
-            }
-        }
-    )
-}
+            },
+            onDrag = { _, dragAmount ->
+                if (state.isAnimationRunning.not()) {
+                    state.drag(dragAmount)
+                }
+            },
+        )
+    }
 
 internal fun Modifier.drag(
     onEnd: suspend (velocity: Offset) -> Unit,
-    onDrag: suspend (change: PointerInputChange, dragAmount: Offset) -> Unit
-): Modifier = composed {
-    var velocity by remember { mutableStateOf(Offset(0f, 0f)) }
-    val scope = rememberCoroutineScope()
-    Modifier.pointerInput(Unit) {
-        detectDragGestures(
-            onDragCancel = {
-                scope.launch { onEnd(velocity) }
-            },
-            onDragEnd = {
-                scope.launch { onEnd(velocity) }
-            },
-            onDrag = { change, dragAmount ->
-                velocity = dragAmount
-                scope.launch { onDrag(change, dragAmount) }
-            }
-        )
+    onDrag: suspend (change: PointerInputChange, dragAmount: Offset) -> Unit,
+): Modifier =
+    composed {
+        var velocity by remember { mutableStateOf(Offset(0f, 0f)) }
+        val scope = rememberCoroutineScope()
+        Modifier.pointerInput(Unit) {
+            detectDragGestures(
+                onDragCancel = {
+                    scope.launch { onEnd(velocity) }
+                },
+                onDragEnd = {
+                    scope.launch { onEnd(velocity) }
+                },
+                onDrag = { change, dragAmount ->
+                    velocity = dragAmount
+                    scope.launch { onDrag(change, dragAmount) }
+                },
+            )
+        }
     }
-}
 
 internal fun normalize(
     min: Float,
     max: Float,
     v: Float,
     startRange: Float = 0f,
-    endRange: Float = 1f
+    endRange: Float = 1f,
 ): Float {
     require(startRange < endRange) {
         "startRange must be less than endRange."
@@ -330,6 +342,5 @@ internal fun normalize(
 }
 
 internal object SwiperDefault {
-
-    const val DEFAULTFRACTION = 0.3f   //default 0.3f   0f löst das Problem
+    const val DEFAULTFRACTION = 0.3f // default 0.3f   0f löst das Problem
 }
