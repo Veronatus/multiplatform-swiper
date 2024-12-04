@@ -1,6 +1,7 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:////PointingToDeclaration/lib/[root]/index.html
+$dokka.location://Swiper/#kotlin.Int#androidx.compose.ui.Modifier#SwiperState#kotlin.Function2[kotlin.Float,kotlin.Float,androidx.compose.material.ThresholdConfig]#kotlin.Function0[kotlin.Unit]?#kotlin.Function0[kotlin.Unit]?#kotlin.Function0[kotlin.Unit]?#kotlin.Function2[SwiperScope,kotlin.Int,kotlin.Unit]/PointingToDeclaration/lib/[root]/-swiper.html
 $dokka.location://getScreenWidthPx/#/PointingToDeclaration/lib/[root]/get-screen-width-px.html
 $dokka.location://rememberSwiperState/#androidx.compose.animation.core.AnimationSpec[kotlin.Float]/PointingToDeclaration/lib/[root]/remember-swiper-state.html
 $dokka.location:/Direction.Center///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-direction/-center/index.html
@@ -10,8 +11,9 @@ $dokka.location:/Direction///PointingToDeclaration/lib/[root]/-direction/index.
 $dokka.location:/Direction/entries/#/PointingToDeclaration/lib/[root]/-direction/entries.html
 $dokka.location:/Direction/valueOf/#kotlin.String/PointingToDeclaration/lib/[root]/-direction/value-of.html
 $dokka.location:/Direction/values/#/PointingToDeclaration/lib/[root]/-direction/values.html
+$dokka.location:/SwiperScope///PointingToDeclaration/lib/[root]/-swiper-scope/index.html
+$dokka.location:/SwiperScope/index/#/PointingToDeclaration/lib/[root]/-swiper-scope/--index--.html
 $dokka.location:/SwiperState///PointingToDeclaration/lib/[root]/-swiper-state/index.html
 $dokka.location:/SwiperState/SwiperState/#kotlin.Float#androidx.compose.animation.core.AnimationSpec[kotlin.Float]/PointingToDeclaration/lib/[root]/-swiper-state/-swiper-state.html
 $dokka.location:/SwiperState/currentIndex/#/PointingToDeclaration/lib/[root]/-swiper-state/current-index.html
-module:lib
-io.github.veronatus.multiplatformswiper
+
