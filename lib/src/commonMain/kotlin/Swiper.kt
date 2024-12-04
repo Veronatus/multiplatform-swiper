@@ -1,7 +1,3 @@
-package io.github.veronatus.multiplatformswiper
-
-import SwiperDefault
-import SwiperState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.ExperimentalMaterialApi
@@ -17,8 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.IntOffset
-import rememberSwiperState
-import swipe
 import kotlin.math.roundToInt
 
 /**
@@ -39,7 +33,7 @@ fun Swiper(
     onSwiped: (() -> Unit)? = null,
     onSwipeLeft: (() -> Unit)? = null,
     onSwipeRight: (() -> Unit)? = null,
-    content: @Composable SwiperScope.(index: Int) -> Unit
+    content: @Composable SwiperScope.(index: Int) -> Unit,
 ) {
     require(count >= 0) { "swipeCount must be >= 0" }
 
@@ -61,7 +55,7 @@ fun Swiper(
 
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier.swipe(state, thresholdConfig)
+        modifier = modifier.swipe(state, thresholdConfig),
     ) {
         val startIndex by remember(count) {
             derivedStateOf {
@@ -72,18 +66,22 @@ fun Swiper(
         for (index in startIndex downTo state.currentIndex) {
             val animated = state.currentIndex == index
             Box(
-                modifier = Modifier
-                    .offset {
-                        if (animated) IntOffset(
-                            state.offset.x.roundToInt(),
-                            state.offset.y.roundToInt()
-                        ) else IntOffset(0, 0)
-                    }
-                    .graphicsLayer {
-                        rotationZ = if (animated) state.rotate else 0f
-                        scaleX = if (!animated) state.scale else 1f
-                        scaleY = if (!animated) state.scale else 1f
-                    }
+                modifier =
+                    Modifier
+                        .offset {
+                            if (animated) {
+                                IntOffset(
+                                    state.offset.x.roundToInt(),
+                                    state.offset.y.roundToInt(),
+                                )
+                            } else {
+                                IntOffset(0, 0)
+                            }
+                        }.graphicsLayer {
+                            rotationZ = if (animated) state.rotate else 0f
+                            scaleX = if (!animated) state.scale else 1f
+                            scaleY = if (!animated) state.scale else 1f
+                        },
             ) {
                 scope.content(index)
             }
@@ -97,8 +95,7 @@ interface SwiperScope {
 }
 
 private class SwiperScopeImpl(
-    state: SwiperState
+    state: SwiperState,
 ) : SwiperScope {
-
     override val index: Int = state.currentIndex
 }

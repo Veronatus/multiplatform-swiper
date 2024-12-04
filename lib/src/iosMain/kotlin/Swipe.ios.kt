@@ -4,4 +4,6 @@ import androidx.compose.ui.platform.LocalWindowInfo
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-actual fun getScreenWidthPx(): Float = LocalWindowInfo.current.containerSize.width.toFloat()
+actual fun getScreenWidthPx(): Float =
+    LocalWindowInfo.current.containerSize.width
+        .toFloat()
