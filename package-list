@@ -3,6 +3,13 @@ $dokka.linkExtension:html
 $dokka.location:////PointingToDeclaration/lib/[root]/index.html
 $dokka.location://getScreenWidthPx/#/PointingToDeclaration/lib/[root]/get-screen-width-px.html
 $dokka.location://rememberSwiperState/#androidx.compose.animation.core.AnimationSpec[kotlin.Float]/PointingToDeclaration/lib/[root]/remember-swiper-state.html
+$dokka.location:/Direction.Center///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-direction/-center/index.html
+$dokka.location:/Direction.Left///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-direction/-left/index.html
+$dokka.location:/Direction.Right///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}lib/[root]/-direction/-right/index.html
+$dokka.location:/Direction///PointingToDeclaration/lib/[root]/-direction/index.html
+$dokka.location:/Direction/entries/#/PointingToDeclaration/lib/[root]/-direction/entries.html
+$dokka.location:/Direction/valueOf/#kotlin.String/PointingToDeclaration/lib/[root]/-direction/value-of.html
+$dokka.location:/Direction/values/#/PointingToDeclaration/lib/[root]/-direction/values.html
 $dokka.location:/SwiperState///PointingToDeclaration/lib/[root]/-swiper-state/index.html
 $dokka.location:/SwiperState/SwiperState/#kotlin.Float#androidx.compose.animation.core.AnimationSpec[kotlin.Float]/PointingToDeclaration/lib/[root]/-swiper-state/-swiper-state.html
 $dokka.location:/SwiperState/currentIndex/#/PointingToDeclaration/lib/[root]/-swiper-state/current-index.html
