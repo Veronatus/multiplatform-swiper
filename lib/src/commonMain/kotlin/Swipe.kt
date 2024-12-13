@@ -27,7 +27,7 @@ import kotlin.math.abs
 import kotlin.math.sign
 
 @Composable
-expect fun getScreenWidthPx(): Float
+internal expect fun getScreenWidthPx(): Float
 
 @Composable
 fun rememberSwiperState(animationSpec: AnimationSpec<Float> = SwipeableDefaults.AnimationSpec): SwiperState {

@@ -75,17 +75,13 @@ android {
 }
 
 mavenPublishing {
-//    publishToMavenCentral(SonatypeHost.DEFAULT)
-    // or when publishing to https://s01.oss.sonatype.org
-    publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
-    signAllPublications()
-    coordinates("com.example.mylibrary", "mylibrary-runtime", "1.0.0")
+    coordinates("io.github.veronatus.multiplatformswiper", "multiplatform-swiper", "0.0.1")
 
     pom {
         name.set(project.name)
-        description.set("A description of what my library does.")
-        inceptionYear.set("2023")
-        url.set("https://github.com/username/mylibrary/")
+        description.set("A Tinder-like box swiper for Compose Multiplatform")
+        inceptionYear.set("2024")
+        url.set("https://github.com/veronatus/multiplatform-swiper/")
         licenses {
             license {
                 name.set("The Apache License, Version 2.0")
@@ -95,15 +91,25 @@ mavenPublishing {
         }
         developers {
             developer {
-                id.set("username")
-                name.set("User Name")
-                url.set("https://github.com/username/")
+                id.set("ezberlin")
+                name.set("ezberlin")
+                url.set("https://github.com/ezberlin/")
+            }
+            developer {
+                id.set("Daxoza")
+                name.set("Daxoza")
+                url.set("https://github.com/Daxoza/")
+            }
+            developer {
+                id.set("JakobMattes")
+                name.set("JakobMattes")
+                url.set("https://github.com/JakobMattes/")
             }
         }
         scm {
-            url.set("https://github.com/username/mylibrary/")
-            connection.set("scm:git:git://github.com/username/mylibrary.git")
-            developerConnection.set("scm:git:ssh://git@github.com/username/mylibrary.git")
+            url.set("https://github.com/Veronatus/multiplatform-swiper")
+            connection.set("scm:git:git://github.com/Veronatus/multiplatform-swiper.git")
+            developerConnection.set("scm:git:ssh://git@github.com/Veronatus/multiplatform-swiper.git")
         }
     }
 }
