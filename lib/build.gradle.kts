@@ -1,5 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -75,7 +73,7 @@ android {
 }
 
 mavenPublishing {
-    coordinates("io.github.veronatus.multiplatformswiper", "multiplatform-swiper", "0.0.1")
+    coordinates("io.github.veronatus", "multiplatform-swiper", "0.0.2")
 
     pom {
         name.set(project.name)

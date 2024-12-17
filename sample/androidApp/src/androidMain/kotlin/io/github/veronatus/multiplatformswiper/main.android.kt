@@ -1,4 +1,4 @@
-package com.myapplication
+package io.github.veronatus.multiplatformswiper
 
 import App
 import androidx.compose.runtime.Composable

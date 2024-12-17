@@ -1,3 +1,5 @@
+package io.github.veronatus.multiplatformswiper
+
 import androidx.compose.runtime.Composable
 import java.awt.Toolkit
 

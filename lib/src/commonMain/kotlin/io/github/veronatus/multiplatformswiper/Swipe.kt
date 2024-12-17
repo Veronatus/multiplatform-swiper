@@ -1,3 +1,5 @@
+package io.github.veronatus.multiplatformswiper
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.gestures.detectDragGestures

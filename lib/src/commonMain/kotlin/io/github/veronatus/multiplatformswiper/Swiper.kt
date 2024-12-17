@@ -1,3 +1,5 @@
+package io.github.veronatus.multiplatformswiper
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.ExperimentalMaterialApi

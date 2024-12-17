@@ -1,4 +1,4 @@
-package com.myapplication
+package io.github.veronatus.multiplatformswiper
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
