@@ -16,6 +16,7 @@ We recommend the use of the library in small decision-making games. The componen
 
 ## Plans
 The library will be actively maintained, as it is used in our own projects. Planned features include:
+
 - [Updating the old Swipable to the new Foundation Anchored Draggable APIs](https://developer.android.com/develop/ui/compose/touch-input/pointer-input/migrate-swipeable?hl=de)
 - Adding more swiping directions, especially Up
 - Updating Kotlin and Compose versions
