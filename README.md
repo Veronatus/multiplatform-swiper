@@ -1,5 +1,7 @@
 # Multiplatform Swiper for [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)
 
+<img src="./art/swiper.png" alt="Multiplatform Swiper Logo">
+
 This Compose Multiplatform/Kotlin Multiplatform Library, based on and developed off the [Jetpack Compose Swiper](https://github.com/lhoyong/swiper) as well as the [Compose Multiplatform Library Template](https://github.com/KevinnZou/compose-multiplatform-library-template), provides an easy and intuitive way of integrating a Tinder-like Swiper in your Jetpack Compose[^1]/Compose Multiplatform/Compose for Desktop.
 
 ## Dependencies
